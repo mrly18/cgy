@@ -1,0 +1,6 @@
+#parse("layout/shortcut.vm")
+<div class="w">
+        <div id="logo_card" style="margin-right:10px;margin-bottom:10px;padding:8px 10px 0">
+            <a href="http://www.jd.com/">
+                <img height="60" width="170" alt="dddddd" src="http://misc.360buyimg.com/lib/img/e/logo-201305-b.png"></a></div>
+</div>

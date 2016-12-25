@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+           version="2.5">
+
+    <!--①从类路径下加载spring配置文件，classpath关键字特指类路径下加载-->
+    <!-- 多个配置文件可用逗号、空格或分号分隔均可 -->
+    <!-- context-param元素可以有多个 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring-config.xml,classpath:spring-beanfactory.xml;</param-value>
+    </context-param>
+
+    <!--②负责启动spring容器的监听器，它将引用①处的上下文参数获得spring配置文件地址-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!-- 除了使用监听器初始化WebApplicationContext，在某些无法通过监听器启动的场合下，还可以使用servlet -->
+    <!--<servlet>
+        <servlet-name>springContextLoaderServlet</servlet-name>
+        <servlet-class>org.springframework.web.context.ContextLoaderServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>-->
+    
+    <!--③SpringMVC的主控Servlet-->
+    <servlet>
+        <!-- 必须有一个“servlet名-servlet.xml”的配置文件 -->
+        <servlet-name>baobaotao</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-mvc.xml</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <!--④SpringMVC处理的URL-->
+    <servlet-mapping>
+        <servlet-name>baobaotao</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+</web-app>

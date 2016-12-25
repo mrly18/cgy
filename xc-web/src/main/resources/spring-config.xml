@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+              http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+        <!--  -->
+       <context:component-scan base-package="com.xc.web" />
+
+       <!--<context:property-placeholder location="classpath:important.properties"/>-->
+<!--#####################################################################################-->
+<!--########################### 1.TestWeb.test1()/test2() start ##############################-->
+<!--#####################################################################################-->
+        <!--<bean id="testWeb" class="com.xc.web.TestWeb"-->
+        <bean name="zxc" class="com.xc.web.TestWeb"
+                p:name="${xc.spring.test1.name}"
+                p:age="${xc.spring.test1.age}" lazy-init="true">
+            <!--<property name="name" value="${xc.spring.test1.name}"/>
+            <property name="age" value="${xc.spring.test1.age}"/>-->
+        </bean>
+
+    <!-- 不使用properties文件，直接配置属性 -->
+    <!--<bean id="mappings"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+
+        &lt;!&ndash; typed as a java.util.Properties &ndash;&gt;
+        <property name="properties">
+            <value>
+                xc.spring.test1.name=kate
+                xc.spring.test1.age=15
+            </value>
+        </property>
+    </bean>-->
+    <!-- 使用properties文件，不通过maven，而是用spring的占位符 -->
+    <!--<bean id="mappings" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="important.properties"/>
+    </bean>
+    <bean name="testWeb" class="${testweb.class}">
+        <property name="name" value="${testweb.name}"/>
+        <property name="age" value="${testweb.age}"/>
+    </bean>-->
+    <!-- override-properties文件，可以替换没有初始化的属性值,这个很蛋疼，因为properties文件里必须是beanName.property -->
+    <!--<context:property-override location="important.properties"/>
+    <bean name="testWeb" class="com.xc.web.TestWeb"/>-->
+
+    <bean name="asd" class="com.xc.web.TestWeb"
+          p:name="Jack"
+          p:age="20" lazy-init="true">
+        <!--<property name="name" value="${xc.spring.test1.name}"/>
+        <property name="age" value="${xc.spring.test1.age}"/>-->
+    </bean>
+    <!--#####################################################################################-->
+    <!--########################### 1.TestWeb.test1()/test2() end ##############################-->
+    <!--#####################################################################################-->
+
+
+    <!--#####################################################################################-->
+    <!--########################### 2.TestDomain.test1()/test2() start ##############################-->
+    <!--#####################################################################################-->
+    <bean id="commonBean1" class="com.xc.common.CommonBean1" p:name="我的名字是CommonBean1"/>
+    <bean id="domain1" class="com.test.domain.Domain1" p:name="我的名字是Domain1" p:commonBean1-ref="commonBean1"/>
+    <bean id="domain2" class="com.test.domain.Domain2" p:name="我的名字是Domain2">
+        <property name="commonBean1">
+            <ref bean="commonBean1"/>
+        </property>
+    </bean>
+    <!--#####################################################################################-->
+    <!--########################### 2.TestDomain.test1()/test2() end ##############################-->
+    <!--#####################################################################################-->
+
+
+    <!--#####################################################################################-->
+    <!--########################### 3.TestDomain.test1()/test2() start ##############################-->
+    <!--#####################################################################################-->
+    <bean id="lookUpService2Impl" class="com.xc.service.impl.LookUpService2Impl" scope="prototype"/>
+    <bean id="lookUpService3Impl" class="com.xc.service.impl.LookUpService3Impl" scope="prototype"/>
+    <bean id="lookUpService1Impl" class="com.xc.service.impl.LookUpService1Impl" scope="singleton">
+        <lookup-method name="getBean" bean="lookUpService2Impl"/>
+        <lookup-method name="getBean2" bean="lookUpService3Impl"/>
+    </bean>
+    <!--#####################################################################################-->
+    <!--########################### 3.TestDomain.test1()/test2() end ##############################-->
+    <!--#####################################################################################-->
+
+    <import resource="spring-annotation.xml"/>
+</beans>

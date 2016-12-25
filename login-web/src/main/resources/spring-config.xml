@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+              http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+              http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+              http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+        <!-- ①扫描类包，将标注spring注解的类自动转化成Bean，同时完成bean的注入 -->
+        <context:component-scan base-package="com.login" />
+
+        <!-- ②定义一个使用DBCP实现的数据源 -->
+        <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+              destroy-method="close"
+            p:driverClassName="com.mysql.jdbc.Driver"
+            p:url="jdbc:mysql://localhost:3306/spring_test"
+            p:username="mrly"
+            p:password="111111"/>
+
+        <!-- ③定义jdbc模板bean -->
+        <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+            p:dataSource-ref="dataSource"/>
+
+        <!-- ④配置事务管理器 -->
+        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+            p:dataSource-ref="dataSource"/>
+
+        <!-- ⑤通过AOP配置提供事务增强，让Service包下所有Bean的所有方法拥有事务 -->
+        <aop:config proxy-target-class="true">
+            <aop:pointcut id="serviceMethod" expression="execution(* com.login..*(..))"/>
+        </aop:config>
+        <tx:advice id="txAdvice" transaction-manager="transactionManager">
+            <tx:attributes>
+                <tx:method name="*"/>
+            </tx:attributes>
+        </tx:advice>
+</beans>

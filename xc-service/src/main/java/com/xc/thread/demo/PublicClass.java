@@ -1,0 +1,50 @@
+package com.xc.thread.demo;
+
+/**
+ * Created by IntelliJ IDEA
+ * User: caogongyuan
+ * Date: 2016/3/31
+ * Time: 11:36
+ * To change this template use File | Settings | File Templates
+ */
+public class PublicClass {
+    private String name;
+    private String password;
+
+    public class PrivateClass{
+        private int age;
+        private String address;
+
+        public int getAge() {
+            return age;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>xc-spring</artifactId>
+        <groupId>com.xc.spring</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>login-web</artifactId>
+    <name>login-web</name>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.xc.spring</groupId>
+            <artifactId>test-domain</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xc.spring</groupId>
+            <artifactId>xc-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- 数据源和数据库连接池包 -->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-pool</groupId>
+            <artifactId>commons-pool</artifactId>
+            <version>1.5.3</version>
+        </dependency>
+        <!-- HttpServletRequest包 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <!-- jsp标签库包 -->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>login-web</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <archiveClasses>true</archiveClasses>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>development</id>
+            <build>
+                <filters>
+                    <filter>filter-development.properties</filter>
+                </filters>
+            </build>
+        </profile>
+        <profile>
+            <id>production</id>
+            <build>
+                <filters>
+                    <filter>filter-production.properties</filter>
+                </filters>
+            </build>
+        </profile>
+    </profiles>
+</project>

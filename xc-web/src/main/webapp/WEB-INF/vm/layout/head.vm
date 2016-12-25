@@ -1,0 +1,15 @@
+<head>
+    <title>#if($title)$title#else 京东商城 #end</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+    <title>手机充值服务 > 确认信息</title>
+    <script type="text/javascript"  src="$assetModule.forPath("/jdf/lib/jquery-1.6.4.js").build()" ></script>
+    <link rel="stylesheet" type="text/css" href="http://misc.360buyimg.com/lib/skin/2013/base.css" media="all" />
+##    <link type="text/css" rel="stylesheet" href="http://misc.360buyimg.com/virtuals/recharge/skin/2012/recharge.pay.new.css" />
+    <link type="text/css" rel="stylesheet" href="http://misc.360buyimg.com/virtuals/recharge/css/recharge.checkorder.css" />
+##    <link type="text/css" rel="stylesheet" href="http://misc.360buyimg.com/virtuals/recharge/skin/2012/recharge.base.css" />
+    <script type="text/javascript">
+    window.pageConfig={
+    	compatible:false
+    };
+    </script>
+</head>
