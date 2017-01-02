@@ -13,7 +13,6 @@
         <module>xc-web</module>
         <module>test-domain</module>
         <module>xc-service</module>
-        <module>spring-3.2</module>
         <module>login-web</module>
         <module>xc-dao</module>
     </modules>
