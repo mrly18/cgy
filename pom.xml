@@ -13,9 +13,9 @@
         <module>xc-web</module>
         <module>test-domain</module>
         <module>xc-service</module>
-        <module>spring-3.2</module>
         <module>login-web</module>
         <module>xc-dao</module>
+        <module>xc-struts</module>
     </modules>
 
     <properties>
@@ -117,7 +117,7 @@
             <version>${mybatis-spring.version}</version>
         </dependency>
         <!-- 数据源管理 -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.0.13</version>
@@ -126,7 +126,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.34</version>
-        </dependency>
+        </dependency>-->
         <!-- apache commons -->
         <dependency>
             <groupId>commons-collections</groupId>
